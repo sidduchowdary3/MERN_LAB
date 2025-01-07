@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn:hover {
+            background-color: green;
+            color: beige;
+        }
+    </style>
+</head>
+<body>
+    <label>Enter the number1:</label><br>
+    <input type="number" id="txt1"/><br>
+    <label>Enter the number2:</label><br>
+    <input type="number" id="txt2"/><br><br>
+    <input type="button" onclick="product()" value="SUBMIT" id="btn"/>
+    <p id="para"></p>
+    <script>
+        function product() {
+            let t1 = Number(document.getElementById("txt1").value);
+            let t2 = Number(document.getElementById("txt2").value);
+            let num = t1 * t2;
+            document.getElementById("para").textContent = num;
+        }
+    </script>
+</body>
+</html>

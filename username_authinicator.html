@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Authenticator</title>
+</head>
+<body>
+    <h1>USERNAME AUTHENTICATOR</h1>
+    <form>
+        Enter the username: <br>
+        <input type="text" id="inp1" /><br><br>
+        <button type="button" onclick="verify()" id="btn">SUBMIT</button>
+    </form>
+    <p id="para"></p>
+
+    <script>
+        function verify() {
+            const para = document.getElementById("para");
+            const username = document.getElementById("inp1");
+            const usernameValue = username.value;
+
+            // Reset the message
+            para.innerHTML = "";
+
+            // Check for empty input
+            if (usernameValue === "") {
+                alert("Username cannot be empty!");
+                username.focus();
+                return false;
+            }
+            if (usernameValue.length >= 15) {
+                alert("Username characters exceeded!");
+                username.focus();
+                return false;
+            }
+
+            // Check for invalid characters
+        const invalidChars = /[!#%^&*()[\]]/;
+            if (invalidChars.test(usernameValue)) {
+                alert("Entered the wrong input! Special characters are not allowed.");
+                username.focus();
+                return false;
+            }
+
+            // If valid, display success message
+            para.innerHTML = "Correct Username provided";
+            return true;
+        }
+    </script>
+</body>
+</html>

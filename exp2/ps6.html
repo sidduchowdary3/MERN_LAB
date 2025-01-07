@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Enter the user name:<br>
+    <input type="text" id="txt1"><br><br>
+    <input type="button" onclick="validate()" value="click"/>
+    <p id="para"></p>
+    <script>
+        function validate() {
+            let name = document.getElementById("txt1").value;
+            if (name.length === 0) {
+                document.getElementById("para").textContent = "Please enter a username.";
+                return;
+            }
+            let str1 = name.charCodeAt(0);
+            if (str1 >= 65 && str1 <= 90) {
+                document.getElementById("para").textContent = "The entered username is correct.";
+            } else {
+                document.getElementById("para").textContent = "The username must start with an uppercase letter.";
+                document.getElementById("txt1").focus();
+            }
+        }
+    </script>
+</body>
+</html>

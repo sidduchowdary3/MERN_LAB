@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            color: blue;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Information Form</h2>
+    <form id="employeeForm">
+        <div>
+            <label>First Name:</label><br>
+            <input type="text" id="firstName" required><br>
+        </div>
+        <div>
+            <label>Last Name:</label><br>
+            <input type="text" id="lastName" required><br>
+        </div>
+        <div>
+            <label>Age:</label><br>
+            <input type="number" id="age" required><br>
+        </div>
+        <div>
+            <label>Department:</label><br>
+            <input type="text" id="department" required><br>
+        </div>
+        <div>
+            <label>Position:</label><br>
+            <input type="text" id="position" required><br><br>
+        </div>
+        <button type="button" onclick="addEmployee()">Add Employee</button>
+    </form>
+
+    <h3>Search for an Employee</h3>
+    <label>Enter First Name to Search:</label>
+    <input type="text" id="searchFirstName" required>
+    <button type="button" onclick="displayEmployee()">Search</button>
+
+    <h3>Employee Details</h3>
+    <div id="employeeDetails"></div>
+
+    <script>
+        let employees = [];
+
+        function addEmployee() {
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let age = document.getElementById("age").value;
+            let department = document.getElementById("department").value;
+            let position = document.getElementById("position").value;
+
+            if (firstName && lastName && age && department && position) {
+                let employee = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    age: age,
+                    department: department,
+                    position: position
+                };
+
+                employees.push(employee);
+
+                document.getElementById("employeeForm").reset(); // Reset form after adding employee
+                alert("Employee added successfully!");
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+
+        function displayEmployee() {
+            let searchFirstName = document.getElementById("searchFirstName").value;
+            let employee = employees.find(e => e.firstName.toLowerCase() === searchFirstName.toLowerCase());
+
+            let detailsDiv = document.getElementById("employeeDetails");
+
+            if (employee) {
+                detailsDiv.innerHTML = `
+                    <p>First Name: ${employee.firstName}</p>
+                    <p>Last Name: ${employee.lastName}</p>
+                    <p>Age: ${employee.age}</p>
+                    <p>Department: ${employee.department}</p>
+                    <p>Position: ${employee.position}</p>
+                `;
+            } else {
+                detailsDiv.innerHTML = "<p>Employee not found!</p>";
+            }
+        }
+    </script>
+</body>
+</html>
